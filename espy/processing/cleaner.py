@@ -2,6 +2,7 @@ import spacy
 from collections import Counter
 
 ES_NLP = spacy.load("es_core_news_md")
+ES_NLP.max_length = 1_500_000
 
 # Parts-of-Speech with large diversity & value
 DEFAULT_STUDY_POS = {
@@ -68,6 +69,7 @@ def get_chapter_vocab(
     texts, study_pos=DEFAULT_STUDY_POS, min_occurences=2, vocab_status=None
 ):
     all_text = "\n\n".join(texts)
+    # TODO - eliminate this call by aggregating chapter vocab dicts
     all_vocab_dict = get_vocab(
         all_text,
         study_pos=study_pos,
@@ -86,6 +88,12 @@ def get_chapter_vocab(
             for k in vocab_dict
             if k not in seen_vocabs and k in all_vocab_dict
         }
+
+        # Sort dict by occurences
+        vocab_dict = {
+            k: v for k, v in sorted(vocab_dict.items(), key=lambda item: -len(item[1]))
+        }
+
         chapter_vocab.append(vocab_dict)
 
         seen_vocabs = seen_vocabs.union({k for k, v in vocab_dict.items()})

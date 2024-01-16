@@ -74,6 +74,7 @@ class VocabStatus(object):
             c = repr(readchar.readchar()).strip("'")
             if c == "?":
                 # Debuggable line to get context on a vocab
+                debug = "\n".join(str(t.sent) for t in context[:3])
                 c = repr(readchar.readchar()).strip("'")
             if c == "k":
                 print(f" ({c}) set to Known!")
