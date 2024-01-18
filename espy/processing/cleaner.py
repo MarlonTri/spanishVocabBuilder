@@ -37,6 +37,16 @@ def get_pos_distribution(text):
     return pos_dict
 
 
+def sort_vocabs_by_occurence(vocab_dict, corpus):
+    def occurence(kv):
+        _, ts = kv
+        l = [corpus.find(t.text) for t in ts]
+        return min([x for x in l if x != -1] + [99_999_999])
+
+    vocab_dict = {k: v for k, v in sorted(vocab_dict.items(), key=occurence)}
+    return vocab_dict
+
+
 def get_vocab(text, study_pos=DEFAULT_STUDY_POS, min_occurences=2, vocab_status=None):
     document = ES_NLP(text)
 
@@ -68,21 +78,22 @@ def get_vocab(text, study_pos=DEFAULT_STUDY_POS, min_occurences=2, vocab_status=
 def get_chapter_vocab(
     texts, study_pos=DEFAULT_STUDY_POS, min_occurences=2, vocab_status=None
 ):
-    all_text = "\n\n".join(texts)
-    # TODO - eliminate this call by aggregating chapter vocab dicts
-    all_vocab_dict = get_vocab(
-        all_text,
-        study_pos=study_pos,
-        min_occurences=min_occurences,
-        vocab_status=vocab_status,
-    )
-
-    chapter_vocab = []
-    seen_vocabs = set()
+    all_vocab_dict = dict()
+    vocab_dicts = []
     for text in texts:
         vocab_dict = get_vocab(
             text, study_pos=study_pos, min_occurences=0, vocab_status=vocab_status
         )
+        vocab_dicts.append(vocab_dict)
+        for k, ts in vocab_dict.items():
+            all_vocab_dict[k] = all_vocab_dict.get(k, []) + ts
+    all_vocab_dict = {
+        k: v for k, v in all_vocab_dict.items() if len(v) >= min_occurences
+    }
+
+    chapter_vocab = []
+    seen_vocabs = set()
+    for text, vocab_dict in zip(texts, vocab_dicts):
         vocab_dict = {
             k: all_vocab_dict[k]
             for k in vocab_dict
