@@ -1,14 +1,26 @@
 import json
+import os
 import time
 from deep_translator import GoogleTranslator
+import pandas as pd
 
 ES_EN_TRANSLATOR = GoogleTranslator(source="es", target="en")
-DEFAULT_JSON_PATH = "./espy/resources/vocab_info.json"
+DEFAULT_SAVE_PATH = "./espy/resources/vocab_info.json"
 
 
 def clean_sentence(sent):
     return str(sent).replace("\n", "  ").strip()
 
+
+def to_formatted_dicts(df):
+    result = []
+    for _, row in df.iterrows():
+        parsed_row = {}
+        for idx, val in row.iteritems():
+            parsed_row[idx] = val 
+
+        result.append(parsed_row)
+    return result
 
 def user_process_vocab(vocab_infos, vocab_dict, tags=None, corpus=None):
     print(f"Beginning sentence selection with {len(vocab_dict)} candidates.")
@@ -94,16 +106,23 @@ class VocabInfo(dict):
         self.tags = tags
 
         if corpus is not None and self.text in corpus:
-            self.sort_field = "CHAR-" + str(corpus.index(self.text)).rjust(8, '0')
+            self.sort_field = "CHAR-" + str(corpus.index(self.text)).rjust(8, "0")
 
         self.dict_init()
         return self
 
 
 class VocabInfos(object):
-    def __init__(self, json_path=DEFAULT_JSON_PATH):
+    def __init__(self, save_path=DEFAULT_SAVE_PATH):
+        _, file_extension = os.path.splitext(DEFAULT_SAVE_PATH)
+
+        if file_extension != ".csv" and file_extension != ".json":
+            raise Exception("File extension bad")
+
+        self.is_json = file_extension == ".json"
+
         self.infos_dict = dict()
-        self.json_path = json_path
+        self.save_path = save_path
         self.load()
 
     def has(self, lemma):
@@ -117,7 +136,29 @@ class VocabInfos(object):
         self.infos_dict[vocab_info.lemma] = vocab_info
 
     def load(self):
-        with open(self.json_path, "r") as f:
+        if self.is_json:
+            self.load_json()
+        else:
+            self.load_csv()
+
+    def save(self):
+        if self.is_json:
+            self.save_json()
+        else:
+            self.save_csv()
+
+    def load_csv(self):
+        df = pd.read_csv(self.save_path)
+        dicts = to_formatted_dicts(df)
+        self.infos_dict = {d["lemma"]:d for d in dicts}
+        
+
+    def save_csv(self):
+        df = pd.json_normalize(self.infos_dict.values())
+        df.to_csv(self.save_path, encoding="utf-8", index=False)
+
+    def load_json(self):
+        with open(self.save_path, "r") as f:
             raw_infos_dict = json.load(f)
 
         self.infos_dict = dict()
@@ -125,6 +166,6 @@ class VocabInfos(object):
         for k, v in raw_infos_dict.items():
             self.infos_dict[k] = VocabInfo().load_raw(**v)
 
-    def save(self):
-        with open(self.json_path, "w") as f:
+    def save_json(self):
+        with open(self.save_path, "w") as f:
             json.dump(self.infos_dict, f, indent="\t")

@@ -25,17 +25,22 @@ all_text = "\n\n".join(vpub.get_docs_text())
 vs = VocabStatus(csv_path=DEFAULT_CSV_PATH)
 # vs.user_process_words(token_dict)
 
-vocab_dict = get_vocab(vpub.get_docs_text()[2], min_occurences=1, vocab_status=vs)
+
+vocab_dict = get_vocab(all_text, min_occurences=1, vocab_status=vs)
+#vocab_dict = get_vocab(vpub.get_docs_text()[2], min_occurences=1, vocab_status=vs)
 vocab_dict = sort_vocabs_by_occurence(vocab_dict, all_text)
 
 vs = VocabStatus()
-vs.user_process_words(vocab_dict)
+#vs.user_process_words(vocab_dict)
 
 vocab_infos = VocabInfos()
+vocab_infos.save_path = './espy/resources/vocab_info.csv'
+vocab_infos.is_json = False
+vocab_infos.save()
 user_process_vocab(vocab_infos, vocab_dict, corpus=all_text)
 
 deck_id = 2059400110
-build_deck(deck_id, "Mistborn Vocab", vocab_infos)
+build_deck(deck_id, "Espanol::Mistborn Vocab", vocab_infos)
 
 #print([len(x) for x in vocab_dicts])
 print("Done.")
