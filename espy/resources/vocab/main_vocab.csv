@@ -833,7 +833,7 @@ manchado,True,False
 viajar,True,False
 exterior,True,False
 traje,True,False
-sospechar,False,False
+sospechar,True,False
 recuperar,True,False
 violento,True,False
 murmurar,False,False
@@ -1122,7 +1122,7 @@ comportar,False,False
 látigo,False,False
 comparado,True,False
 propiedad,True,False
-requeer,False,False
+requeer,False,True
 comercial,True,False
 sacerdote,True,False
 inquietante,False,False
@@ -1179,7 +1179,7 @@ frecuente,True,False
 componer,False,False
 pues,True,False
 pugna,False,False
-hazar,False,False
+hazar,False,True
 alarido,False,False
 calcular,True,False
 sobrevive,True,False
@@ -1321,7 +1321,8 @@ mudar él,False,False
 entusiasmar,True,False
 celebrar él,True,False
 decimocuarto,False,True
-creces,False,False
+creces,False,True
+cumplir con creces,False,False
 azada,False,False
 inexcusable,True,False
 descaradamente,False,False
@@ -1337,7 +1338,7 @@ insípido,True,False
 hombrecillo,False,False
 chanza,False,False
 acoger,False,False
-apartaras,False,False
+apartaras,False,True
 remansar,False,False
 horrorizada,False,False
 pensáis,False,True
