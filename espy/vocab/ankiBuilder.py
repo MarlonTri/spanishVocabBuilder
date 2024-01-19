@@ -68,7 +68,8 @@ def morph_to_text(morph):
     t = ""
     for i, (k, v) in enumerate(morph.items()):
         if i % 3 == 0:
-            t = t + "<br>"
+            if i != 0:
+                t = t + "<br>"
         else:
             t = t + "|"
         t = t + k + "=" + v

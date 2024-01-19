@@ -809,7 +809,7 @@ contrato,False,False
 barco,True,False
 terrible,True,False
 crear,True,False
-chocar,False,False
+chocar,True,False
 rodear,False,False
 prelado,False,False
 esfuerzo,True,False
@@ -869,7 +869,7 @@ cubierto,True,False
 hoja,True,False
 estómago,True,False
 marrón,True,False
-comentario,False,False
+comentario,True,False
 práctica,True,False
 recurrir,False,False
 retorcido,False,False
@@ -982,7 +982,8 @@ presentar,True,False
 población,True,False
 parpadear,False,False
 vacilante,False,False
-gimeír,False,False
+gimeír,False,True
+gemir,False,False
 posición,True,False
 fruta,True,False
 satisfecho,False,False
@@ -994,7 +995,7 @@ informe,False,False
 sección,True,False
 delicado,True,False
 haber él,True,False
-marchar yo,False,False
+marchar yo,True,False
 mentira,True,False
 pillar,False,False
 antebrazo,False,False
@@ -1020,7 +1021,7 @@ viajero,True,False
 trabajador,True,False
 quejar,True,False
 impresionar,True,False
-apoyar él,False,False
+apoyar él,False,True
 energía,True,False
 realizar,True,False
 característico,True,False
@@ -1080,7 +1081,7 @@ arremolinar,False,False
 desconcertado,False,False
 tímido,True,False
 notable,True,False
-apostar,False,False
+apostar,True,False
 exótico,True,False
 sabio,True,False
 liderar,True,False
@@ -1129,7 +1130,7 @@ muchachita,True,False
 fornido,False,False
 aparente,True,False
 pisar,False,False
-queréis,False,False
+queréis,False,True
 carbón,True,False
 comunidad,True,False
 artesano,True,False
@@ -1169,9 +1170,9 @@ inadecuado,True,False
 desafiar,True,False
 desparramar,False,False
 incrédulo,True,False
-fuistir,False,False
+fuistir,False,True
 deplorable,True,False
-descubrar,False,False
+descubrar,False,True
 devorar,True,False
 vulgar,True,False
 frecuente,True,False
@@ -1196,7 +1197,7 @@ ofrecerles,True,False
 manchar él,False,False
 saya,False,False
 funcionario,True,False
-negruro,False,False
+negruro,False,True
 secar,False,False
 favorable,True,False
 productivo,True,False
@@ -1212,22 +1213,22 @@ azotar,False,False
 entornado,False,False
 envarado,False,False
 súplica,False,False
-flujo,False,False
+flujo,True,False
 tolerar,True,False
-distar,False,False
+distar,True,False
 maltratado,True,False
 salario,True,False
 delatar,False,False
 sembrar,False,False
 volcar,False,False
-maduro,False,False
+maduro,True,False
 prestigio,True,False
 fuiste,True,False
-robastar,False,False
+robastar,False,True
 deprimentemente,False,False
 infancia,True,False
 manjar,False,False
-sobra,False,False
+sobra,True,False
 hurto,False,False
 sabor,True,False
 calva,False,False
@@ -1339,10 +1340,10 @@ acoger,False,False
 apartaras,False,False
 remansar,False,False
 horrorizada,False,False
-pensáis,False,False
-teméis,False,False
+pensáis,False,True
+teméis,False,True
 conllevar,False,False
-quedo,False,False
+quedo,False,True
 cobijo,False,False
 renegado,True,False
 repetir,True,False
@@ -1351,19 +1352,19 @@ chismoso,True,False
 incurable,True,False
 autorizado,True,False
 ganar,True,False
-cenaste,False,False
-comes,False,False
+cenaste,False,True
+comes,False,True
 contagia,True,False
 infundado,False,False
 comer yo,False,False
 embutido,False,False
 renombrado,True,False
-colarme,False,False
+colarme,True,False
 poquitín,False,False
 aguado,False,False
-aceptación,False,False
+aceptación,True,False
 distribuido,True,False
-burbujear,False,False
+burbujear,True,False
 com,False,True
 interrumpido,True,False
 devorada,True,False
