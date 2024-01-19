@@ -5,7 +5,7 @@ from deep_translator import GoogleTranslator
 import pandas as pd
 
 ES_EN_TRANSLATOR = GoogleTranslator(source="es", target="en")
-DEFAULT_SAVE_PATH = "./espy/resources/vocab_info.json"
+DEFAULT_SAVE_PATH = "./espy/resources/vocab_info.csv"
 
 
 def clean_sentence(sent):
@@ -17,10 +17,11 @@ def to_formatted_dicts(df):
     for _, row in df.iterrows():
         parsed_row = {}
         for idx, val in row.iteritems():
-            parsed_row[idx] = val 
+            parsed_row[idx] = val
 
         result.append(parsed_row)
     return result
+
 
 def user_process_vocab(vocab_infos, vocab_dict, tags=None, corpus=None):
     print(f"Beginning sentence selection with {len(vocab_dict)} candidates.")
@@ -86,7 +87,7 @@ class VocabInfo(dict):
         self.text = text
         self.english = english
         self.english_sent = english_sent
-        self.tags = tags
+        self.tags = tags or []
         self.sort_field = sort_field
         self.dict_init()
         return self
@@ -103,7 +104,7 @@ class VocabInfo(dict):
         time.sleep(2)
         print(f"Running Google translate on {self.lemma} sentence")
         self.english_sent = ES_EN_TRANSLATOR.translate(self.sent)
-        self.tags = tags
+        self.tags = tags or []
 
         if corpus is not None and self.text in corpus:
             self.sort_field = "CHAR-" + str(corpus.index(self.text)).rjust(8, "0")
@@ -113,6 +114,18 @@ class VocabInfo(dict):
 
 
 class VocabInfos(object):
+    COLS = [
+        "lemma",
+        "pos",
+        "english",
+        "text",
+        "sort_field",
+        "sent",
+        "english_sent",
+        "morph",
+        "tags",
+    ]
+
     def __init__(self, save_path=DEFAULT_SAVE_PATH):
         _, file_extension = os.path.splitext(DEFAULT_SAVE_PATH)
 
@@ -148,13 +161,20 @@ class VocabInfos(object):
             self.save_csv()
 
     def load_csv(self):
-        df = pd.read_csv(self.save_path)
+        df = pd.read_csv(self.save_path, encoding="utf-8")
         dicts = to_formatted_dicts(df)
-        self.infos_dict = {d["lemma"]:d for d in dicts}
-        
+
+        self.infos_dict = dict()
+        for d in dicts:
+            d["morph"] = json.loads(d["morph"])
+            d["tags"] = json.loads(d["tags"])
+            self.infos_dict[d["lemma"]] = VocabInfo().load_raw(**d)
 
     def save_csv(self):
-        df = pd.json_normalize(self.infos_dict.values())
+        df = pd.json_normalize(self.infos_dict.values(), max_level=0)
+        df = df.reindex(self.COLS, axis=1)
+        df['morph'] = df['morph'].apply(json.dumps)
+        df['tags'] = df['tags'].apply(json.dumps)
         df.to_csv(self.save_path, encoding="utf-8", index=False)
 
     def load_json(self):

@@ -86,6 +86,7 @@ def gen_guid(vocab_info: VocabInfo):
 def make_note(vocab_info: VocabInfo):
     morph_text = morph_to_text(vocab_info.morph)
     sent_left, sent_right = vocab_info.sent.split(vocab_info.text, 1)
+    tags = " ".join(vocab_info.tags) if type(vocab_info.tags) == list else vocab_info.tags
     note = genanki.Note(
         model=ANKI_BUILDER_MODEL,
         fields=[
@@ -100,7 +101,7 @@ def make_note(vocab_info: VocabInfo):
             sent_left,
             sent_right,
         ],
-        tags=vocab_info.tags,
+        tags=tags,
         guid=gen_guid(vocab_info),
     )
 

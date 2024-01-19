@@ -528,7 +528,7 @@ agradecer,True,False
 llenar,True,False
 dueña,True,False
 pileta,False,False
-cargar,False,False
+cargar,True,False
 chorizo,True,False
 ocultar,True,False
 final,True,False
@@ -829,7 +829,7 @@ comentar,False,False
 controlar,True,False
 contener,False,False
 rumor,True,False
-manchado,False,False
+manchado,True,False
 viajar,True,False
 exterior,True,False
 traje,True,False
@@ -922,7 +922,7 @@ resonar,False,False
 personal,True,False
 reloj,True,False
 ensangrentado,False,False
-atender,False,False
+atender,True,False
 necesidad,True,False
 mando,False,False
 intención,True,False
@@ -1025,7 +1025,7 @@ energía,True,False
 realizar,True,False
 característico,True,False
 promesa,True,False
-tendré,False,False
+tendré,False,True
 reunido,True,False
 severo,True,False
 cojear,False,False
@@ -1046,7 +1046,7 @@ emplear,True,False
 alejar,True,False
 escaso,False,False
 burdo,False,False
-cargado,False,False
+cargado,True,False
 sospecha,True,False
 encontrar él,True,False
 veloz,True,False
@@ -1073,7 +1073,7 @@ soñar,True,False
 intriga,True,False
 esclavo,False,False
 horizonte,True,False
-cesar,False,False
+cesar,True,False
 depositar,True,False
 preparativo,True,False
 arremolinar,False,False
@@ -1097,7 +1097,7 @@ limitar,True,False
 mismísimo,False,False
 sudor,False,False
 disco,True,False
-tendrar,False,False
+tendrar,False,True
 bestia,True,False
 toser,False,False
 emitir,True,False
@@ -1151,7 +1151,7 @@ marca,True,False
 inhumano,True,False
 relativo,True,False
 burócrata,True,False
-servidor,False,False
+servidor,True,False
 besar,True,False
 curso,False,False
 extra,True,False
@@ -1160,9 +1160,9 @@ erguido,False,False
 distinguir él,True,False
 gacho,False,False
 occidental,False,False
-formar él,False,False
+formar él,True,False
 surrealista,True,False
-verdura,False,False
+verdura,True,False
 comienzo,True,False
 garra,False,False
 inadecuado,True,False
@@ -1282,7 +1282,7 @@ interacción,True,False
 fiel,True,False
 lector,True,False
 versión,True,False
-formar,False,False
+formar,True,False
 concreto,False,False
 mapa,False,False
 novela,True,False
@@ -1317,14 +1317,14 @@ sanear,False,False
 eficiente,True,False
 recomendación,True,False
 mudar él,False,False
-entusiasmar,False,False
+entusiasmar,True,False
 celebrar él,True,False
 decimocuarto,False,True
 creces,False,False
 azada,False,False
 inexcusable,True,False
 descaradamente,False,False
-llegarir,False,False
+llegarir,False,True
 socavón,False,False
 trocha,False,False
 reseco,False,False
