@@ -42,7 +42,6 @@ secreto,False,False
 sonreir,True,False
 jugar,False,False
 siquiera,True,False
-llorer,False,False
 morir,True,False
 muerte,True,False
 perder,True,False
@@ -78,7 +77,6 @@ venir,True,False
 sur,True,False
 ciudad,True,False
 siglo,True,False
-xix,False,False
 zona,True,False
 porteño,False,False
 existir,True,False
@@ -337,7 +335,6 @@ aire,True,False
 ruido,True,False
 horrible,True,False
 fiscal,True,False
-nosotra,False,False
 música,True,False
 uña,False,False
 seco,True,False
@@ -429,7 +426,6 @@ esconder,True,False
 animal,True,False
 buen,True,False
 imposible,True,False
-ómnibu,False,False
 vestido,True,False
 gris,True,False
 saludar,True,False
@@ -533,7 +529,6 @@ chorizo,True,False
 ocultar,True,False
 final,True,False
 entrada,True,False
-punk,True,False
 pasto,False,False
 piel,True,False
 caja,False,False
@@ -610,31 +605,24 @@ lágrima,False,False
 silla,True,False
 metal,True,False
 bruma,True,False
-asinteír,False,False
 noble,True,False
 inquisidor,True,False
 tal,True,False
-skaar,False,True
 soldado,True,False
 alzar,False,False
-skaa,False,True
 grupo,True,False
-ceño,False,True
 banda,True,False
-fruncir,False,True
+fruncir,True,False
 fruncir el ce\u00f1o,False,False
 suponer,True,False
 fuerza,True,False
 responder,True,False
 peltre,False,False
-alomancia,False,False
 moneda,False,False
 empujar,False,False
 continuar,True,False
 paso,False,False
 ejército,True,False
-alomántico,False,True
-atium,False,False
 obligador,False,True
 estaño,False,False
 baile,True,False
@@ -674,7 +662,6 @@ fortaleza,False,False
 regresar,True,False
 señor,True,False
 palacio,True,False
-terrisano,False,False
 poderoso,True,False
 suficiente,True,False
 permitir,True,False
@@ -725,7 +712,6 @@ realidad,True,False
 ceja,False,False
 bolsa,True,False
 distancia,True,False
-oer,True,False
 instante,True,False
 oportunidad,True,False
 docena,True,False
@@ -898,7 +884,6 @@ visita,True,False
 bebida,True,False
 permitir él,True,False
 librar,True,False
-tatuaj,False,False
 paliza,False,False
 levantar él,True,False
 pertenecer,True,False
@@ -926,8 +911,6 @@ atender,True,False
 necesidad,True,False
 mando,False,False
 intención,True,False
-palideceír,False,False
-sirvient,True,False
 ira,False,False
 fracaso,True,False
 dirigir él,False,False
@@ -935,7 +918,6 @@ polvo,True,False
 visible,True,False
 enterar,False,False
 choza,False,False
-lor,False,False
 lástima,True,False
 probar,True,False
 nocturno,True,False
@@ -982,7 +964,6 @@ presentar,True,False
 población,True,False
 parpadear,False,False
 vacilante,False,False
-gimeír,False,True
 gemir,False,False
 posición,True,False
 fruta,True,False
@@ -1098,7 +1079,6 @@ limitar,True,False
 mismísimo,False,False
 sudor,False,False
 disco,True,False
-tendrar,False,True
 bestia,True,False
 toser,False,False
 emitir,True,False
@@ -1115,14 +1095,12 @@ placer,True,False
 castigar,True,False
 enfermo,True,False
 menguar,False,False
-desvanecir,True,False
 parasol,True,False
 montículo,False,False
 comportar,False,False
 látigo,False,False
 comparado,True,False
 propiedad,True,False
-requeer,False,True
 comercial,True,False
 sacerdote,True,False
 inquietante,False,False
@@ -1141,7 +1119,6 @@ digerir,False,False
 predicar,True,False
 saborear,True,False
 maldición,True,False
-vear,False,True
 tendido,False,False
 exhausto,True,False
 provocador,True,False
@@ -1225,7 +1202,6 @@ maduro,True,False
 prestigio,True,False
 fuiste,True,False
 robastar,False,True
-deprimentemente,False,False
 infancia,True,False
 manjar,False,False
 sobra,True,False
@@ -1241,7 +1217,6 @@ imaginación,True,False
 distorsionar,True,False
 ampliado,True,False
 mandar él,False,False
-enrojecir,True,False
 entumecido,False,False
 rendir él,False,False
 enrojecido,True,False
@@ -1285,7 +1260,7 @@ lector,True,False
 versión,True,False
 formar,True,False
 concreto,False,False
-mapa,False,False
+mapa,True,False
 novela,True,False
 labor,True,False
 treintena,True,False
@@ -1307,7 +1282,6 @@ sopor,False,False
 diligente,True,False
 azote,False,False
 heredé,True,False
-ejecuter,True,False
 complacido,False,False
 fulgurante,False,False
 carmesí,False,False
@@ -1360,7 +1334,6 @@ infundado,False,False
 comer yo,False,True
 embutido,False,False
 renombrado,True,False
-colarme,True,False
 poquitín,False,False
 aguado,False,False
 aceptación,True,False
@@ -1387,19 +1360,15 @@ hogaza,False,False
 tuya ,True,False
 hospitalidad,True,False
 cualquiero,True,False
-interrumpeír,True,False
-goz,False,False
+goce,False,False
 rebote,False,False
 despertar él,True,False
-traerir,False,True
-huel,True,False
 altiplanicie,False,False
 humeante,False,False
 marchár,False,True
 aterrado,True,False
 koloss,False,True
 alborotador,True,False
-rebelaríar,False,True
 abrumar,False,False
 adentro,False,False
 cimiento,False,False
@@ -1409,14 +1378,12 @@ incansable,False,False
 pos,False,False
 ha,True,False
 primitivo,True,False
-cuantar,False,False
 ser,True,False
 valiosísimo,False,False
 pista,True,False
 visual,True,False
 excelente,True,False
 ex,False,True
-lent,True,False
 dar yo,True,False
 misterioso,True,False
 misterio,True,False
@@ -1505,7 +1472,6 @@ echo,False,False
 caro,True,False
 era,True,False
 luto,False,False
-obligadores,False,True
 adorar,True,False
 ola,False,False
 poca,True,False
@@ -1517,7 +1483,6 @@ media,True,False
 otro,True,False
 gota,False,False
 té,True,False
-dame,True,False
 comprendido,True,False
 compre,True,False
 rendir,False,False
@@ -1558,3 +1523,94 @@ quiera,True,False
 rata,False,False
 cerdo,True,False
 dote,False,False
+esto,True,False
+darse,True,False
+ayudarse,True,False
+diverso,True,False
+publicado,True,False
+sexto,True,False
+mayo,True,False
+recibido,True,False
+público,True,False
+crítica,True,False
+interesar,True,False
+renovación,True,False
+trillado,False,False
+género,True,False
+fantasía,True,False
+ameno,False,False
+magia,True,False
+romance,True,False
+enfrentamiento,False,False
+político,True,False
+conflicto,True,False
+religioso,True,False
+lucha,True,False
+igualdad,True,False
+penetrante,True,False
+personaje,True,False
+coherente,True,False
+épico,True,False
+pico,True,False
+detectar,True,False
+destacar,False,False
+tono,True,False
+vano,True,False
+afirmar,True,False
+firma,True,False
+haber,True,False
+empezad,False,True
+sumo,False,False
+suma,False,False
+inteligente,True,False
+irónico,True,False
+número,True,False
+orientación,True,False
+clásico,True,False
+descripción,True,False
+fantástico,True,False
+capital,True,False
+inmortal,True,False
+mortal,True,False
+finalizar,True,False
+introducir,True,False
+dato,True,False
+subversivo,True,False
+eternidad,True,False
+publicar,True,False
+trilogía,True,False
+titulado,True,False
+formado,True,False
+ascensión,True,False
+tenerse,True,False
+colección,True,False
+lección,True,False
+narrar,True,False
+cliché,True,False
+dragón,True,False
+enano,True,False
+elfo,True,False
+mago,True,False
+todopoderoso,True,False
+excepcional,True,False
+cota,False,False
+regla,True,False
+lamentar,True,False
+renovado,True,False
+utilizar,True,False
+sistema,True,False
+tema,True,False
+intrigante,True,False
+satisfactorio,True,False
+factor,True,False
+acto,True,False
+actor,True,False
+original,True,False
+recomendado,True,False
+dado,False,False
+lectura,True,False
+volumen,True,False
+caído,True,False
+nada,True,False
+florecer,True,False
+esclavizar,True,False
