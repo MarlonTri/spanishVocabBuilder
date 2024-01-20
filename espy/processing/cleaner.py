@@ -1,12 +1,22 @@
 # import spacy
 from collections import Counter
+from enum import Enum
 
 from espy.processing.Dictionary import Dictionary
 from espy.processing.token_cleaner import clean_token
 
-USE_STANZE = True
 
-if USE_STANZE:
+class NLP_MODULE(Enum):
+    SM = "es_core_news_sm"
+    MD = "es_core_news_md"
+    LG = "es_core_news_lg"
+    TRF = "es_dep_news_trf"
+    STANZA = "stanza"
+
+
+nlp_module = NLP_MODULE.TRF
+
+if nlp_module == NLP_MODULE.STANZA:
     import stanza
     import spacy_stanza
 
@@ -15,7 +25,7 @@ if USE_STANZE:
 else:
     import spacy
 
-    ES_NLP = spacy.load("es_core_news_md")
+    ES_NLP = spacy.load(nlp_module.value)
 
 ES_NLP.max_length = 1_500_000
 
@@ -72,7 +82,7 @@ def get_vocab(
     min_occurences=2,
     vocab_status=None,
     check_real=True,
-    token_cleaning=True
+    token_cleaning=True,
 ):
     document = ES_NLP(text)
 
