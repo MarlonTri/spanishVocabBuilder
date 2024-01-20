@@ -1,7 +1,22 @@
-import spacy
+# import spacy
 from collections import Counter
 
-ES_NLP = spacy.load("es_core_news_md")
+from espy.processing.Dictionary import Dictionary
+from espy.processing.token_cleaner import clean_token
+
+USE_STANZE = True
+
+if USE_STANZE:
+    import stanza
+    import spacy_stanza
+
+    stanza.download("es")
+    ES_NLP = spacy_stanza.load_pipeline("es")
+else:
+    import spacy
+
+    ES_NLP = spacy.load("es_core_news_md")
+
 ES_NLP.max_length = 1_500_000
 
 # Parts-of-Speech with large diversity & value
@@ -13,6 +28,10 @@ DEFAULT_STUDY_POS = {
 
 # Parts-of-Speech with small enough diversity to exhaustively study all instances
 EXHAUST_POS = {"CCONJ", "INTJ", "SCONJ", "DET", "PRON", "AUX"}
+
+
+class pseudo_token(object):
+    pass
 
 
 def check_reps(document):
@@ -47,7 +66,14 @@ def sort_vocabs_by_occurence(vocab_dict, corpus):
     return vocab_dict
 
 
-def get_vocab(text, study_pos=DEFAULT_STUDY_POS, min_occurences=2, vocab_status=None):
+def get_vocab(
+    text,
+    study_pos=DEFAULT_STUDY_POS,
+    min_occurences=2,
+    vocab_status=None,
+    check_real=True,
+    token_cleaning=True
+):
     document = ES_NLP(text)
 
     vocab_dict = {}
@@ -55,6 +81,8 @@ def get_vocab(text, study_pos=DEFAULT_STUDY_POS, min_occurences=2, vocab_status=
     for token in document:
         if token.pos_ not in study_pos:
             continue
+        if token_cleaning:
+            token = clean_token(token)
         vocab_dict[token.lemma_] = vocab_dict.get(token.lemma_, []) + [token]
 
     # Remove all entries with less than min_occurences
@@ -67,6 +95,10 @@ def get_vocab(text, study_pos=DEFAULT_STUDY_POS, min_occurences=2, vocab_status=
             for k, v in vocab_dict.items()
             if (not vocab_status.is_discarded(k) and not vocab_status.is_known(k))
         }
+
+    if check_real:
+        SPANISH_DICTIONARY = Dictionary()
+        vocab_dict = {k: v for k, v in vocab_dict.items() if k in SPANISH_DICTIONARY}
 
     # Sort dict by occurences
     vocab_dict = {

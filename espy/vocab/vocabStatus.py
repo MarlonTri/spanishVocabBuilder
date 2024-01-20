@@ -12,7 +12,7 @@ class VocabStatus(object):
         self.csv_path = csv_path
 
         if os.path.exists(csv_path):
-            self.df = pd.read_csv(csv_path)
+            self.df = pd.read_csv(csv_path, encoding="utf-8")
         else:
             self.df = pd.DataFrame(columns=self.COLS)
 
@@ -37,7 +37,7 @@ class VocabStatus(object):
         if not self.is_seen(word):
             return False
         return list(self.df[self.df["Word"] == word]["Known"])[0]
-    
+
     def is_discarded(self, word: str):
         if not self.is_seen(word):
             return False
@@ -61,15 +61,17 @@ class VocabStatus(object):
         print(" 'd' = Discard")
         print(" '?' = Hit debug line to view vocab context")
         print(" 'x' = End selecting")
+        print(" 's' = Skip word")
         print(" 'any other' = Unknown")
         print()
         print(f"Beginning word selection with {len(vocabs)} candidates.")
 
-        vocabs = {k:v for k,v in vocabs.items() if not self.is_seen(k)}
+        vocabs = {k: v for k, v in vocabs.items() if not self.is_seen(k)}
         print(f"{len(vocabs)} candidates remaining after filtering for is_seen")
 
         selected = []
-        for i,(word, context) in enumerate(vocabs.items()):
+        for i, (word, context) in enumerate(vocabs.items()):
+            print("Context:", str(context[0].sent).strip())
             print(f"({len(vocabs) - i}) {word}:", end="")
             c = repr(readchar.readchar()).strip("'")
             if c == "?":
@@ -85,6 +87,9 @@ class VocabStatus(object):
             elif c == "x":
                 print(f" ({c}) Ending selection")
                 break
+            elif c == "s":
+                print(f" ({c}) Skipping word")
+                continue
             else:
                 selected.append(word)
                 print(f" ({c}) set to Unknown")

@@ -1,13 +1,14 @@
 from espy.media.epubMedia import epubMedia
-import spacy
-from spacy import displacy
-from collections import Counter
 import pandas as pd
+from espy.processing.Dictionary import Dictionary
 from espy.processing.cleaner import *
 from pprint import pprint
 from espy.vocab.ankiBuilder import build_deck
 from espy.vocab.vocabBuilder import VocabInfo, VocabInfos, user_process_vocab
 from espy.vocab.vocabStatus import DEFAULT_CSV_PATH, VocabStatus
+import numpy as np
+
+SPANISH_DICTIONARY = Dictionary()
 
 EPUBS = [
     "./espy/resources/epubs/Sofía Segovia - El murmullo de las abejas.epub",
@@ -23,20 +24,19 @@ all_text = "\n\n".join(vpub.get_docs_text())
 # token_dict = get_vocab(all_text, min_occurences=2)
 
 vs = VocabStatus(csv_path=DEFAULT_CSV_PATH)
-# vs.user_process_words(token_dict)
 
 
-#vocab_dict = get_vocab(all_text, min_occurences=1, vocab_status=vs)
-vocab_dict = get_vocab(vpub.get_docs_text()[2], min_occurences=1, vocab_status=vs)
+vocab_dict = get_vocab("\n\n".join(vpub.get_docs_text()[2:]), min_occurences=1, vocab_status=vs)
+# vocab_dict = get_vocab(vpub.get_docs_text()[2], min_occurences=2, check_real = False)# vocab_status=vs)
 vocab_dict = sort_vocabs_by_occurence(vocab_dict, all_text)
 
 vs = VocabStatus()
-#vs.user_process_words(vocab_dict)
+vs.user_process_words(vocab_dict)
 
 vocab_infos = VocabInfos()
 
-user_process_vocab(vocab_infos, vocab_dict, corpus=all_text)
 
+user_process_vocab(vocab_infos, vocab_dict, corpus=all_text)
 deck_id = 2059400110
 build_deck(deck_id, "Espanol::Mistborn Vocab", vocab_infos)
 

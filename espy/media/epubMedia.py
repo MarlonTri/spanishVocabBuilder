@@ -8,7 +8,7 @@ class epubMedia(Media):
     def __init__(self, epub_path):
         self.book = ebooklib.epub.read_epub(epub_path)
 
-    def get_docs_text(self, txt_clean_func=None):
+    def get_docs_text(self, txt_clean_func=TextClean.SYMBOLS):
         docs = list(self.book.get_items_of_type(ebooklib.ITEM_DOCUMENT))
         docs_text = []
         for doc in docs:

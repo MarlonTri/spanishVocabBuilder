@@ -2,16 +2,20 @@ import re
 from enum import Enum
 from collections import Counter
 
+import unicodedata
+
+
 
 class TextClean(Enum):
     LOWER = lambda x: x.lower()
-
+    SYMBOLS = lambda x: x.replace("…", "...").replace("–", " - ")
+ 
 
 class Media(object):
     def __init__(self):
         raise NotImplementedError()
 
-    def get_text(self, txt_clean_funcs=TextClean.LOWER):
+    def get_text(self, txt_clean_funcs=TextClean.SYMBOLS):
         raise NotImplementedError()
 
     def get_vocab(self, sum_vocab=False, **kwargs):
