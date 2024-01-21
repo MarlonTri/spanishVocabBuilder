@@ -24,7 +24,7 @@ if nlp_module == NLP_MODULE.STANZA:
     ES_NLP = spacy_stanza.load_pipeline("es")
 else:
     import spacy
-
+    spacy.require_gpu() #TODO 
     ES_NLP = spacy.load(nlp_module.value)
 
 ES_NLP.max_length = 1_500_000

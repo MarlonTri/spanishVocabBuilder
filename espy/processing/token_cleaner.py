@@ -44,10 +44,14 @@ def is_reflexive_lemma(lemma):
     return bool(re.match(REFLEXIVE_LEMMA_PAT, lemma))
 
 
+def normalize_reflexive_lemma(lemma):
+    return lemma[:-3] + "se"
+
+
 def clean_token(token):
     token.lemma_ = token.lemma_.strip().lower()
     if is_reflexive_lemma(token.lemma_):
-        token.lemma_ = token.lemma_[:-3] + "se"
+        token.lemma_ = normalize_reflexive_lemma(token.lemma_)
 
     if token.lemma_ in LEMMA_FIX:
         token.lemma_ = LEMMA_FIX[token.lemma_]

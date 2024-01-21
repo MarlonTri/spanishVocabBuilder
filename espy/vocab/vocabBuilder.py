@@ -36,7 +36,14 @@ def user_process_vocab(vocab_infos, vocab_dict, tags=None, corpus=None):
         for j, token in enumerate(tokens):
             cleaned_sent = clean_sentence(token.sent)
             print(f"({j}):\t{cleaned_sent}")
-        sel_num = input("Selected sentence (-1 for none)")
+        print(
+            "Selected sentence (-1 for exit, -2 for skip. Add sentence after number if desired)"
+        )
+        sel_num = input("Input: ")
+        vocab_infos.load()
+        custom_sent = None
+        if " " in sel_num:
+            sel_num, custom_sent = sel_num.split(maxsplit=1)
         sel_num = int(sel_num)
         if sel_num == -1:
             print("Exiting selection process.")
@@ -44,7 +51,11 @@ def user_process_vocab(vocab_infos, vocab_dict, tags=None, corpus=None):
         if sel_num == -2:
             print(f"Skipping '{word}'.")
             continue
-        v_info = VocabInfo().load_token(tokens[sel_num], tags=tags, corpus=corpus)
+
+        selected_token = tokens[sel_num]
+        v_info = VocabInfo().load_token(
+            selected_token, tags=tags, corpus=corpus, sentence_override=custom_sent
+        )
         vocab_infos.add(v_info)
         vocab_infos.save()
     return selected
@@ -92,10 +103,13 @@ class VocabInfo(dict):
         self.dict_init()
         return self
 
-    def load_token(self, token, tags, corpus=None):
+    def load_token(self, token, tags, corpus=None, sentence_override=None):
         self.lemma = token.lemma_
         self.pos = token.pos_
-        self.sent = str(token.sent).replace("\n", " ").strip()
+
+        self.sent = token.sent if (sentence_override is None) else sentence_override
+        self.sent = str(self.sent).replace("\n", " ").strip()
+
         self.morph = token.morph.to_dict()
         self.text = token.text
 
@@ -173,8 +187,8 @@ class VocabInfos(object):
     def save_csv(self):
         df = pd.json_normalize(self.infos_dict.values(), max_level=0)
         df = df.reindex(self.COLS, axis=1)
-        df['morph'] = df['morph'].apply(json.dumps)
-        df['tags'] = df['tags'].apply(json.dumps)
+        df["morph"] = df["morph"].apply(json.dumps)
+        df["tags"] = df["tags"].apply(json.dumps)
         df.to_csv(self.save_path, encoding="utf-8", index=False)
 
     def load_json(self):
