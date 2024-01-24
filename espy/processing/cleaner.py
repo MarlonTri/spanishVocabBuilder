@@ -24,7 +24,8 @@ if nlp_module == NLP_MODULE.STANZA:
     ES_NLP = spacy_stanza.load_pipeline("es")
 else:
     import spacy
-    spacy.require_gpu() #TODO 
+
+    spacy.require_gpu()  # TODO
     ES_NLP = spacy.load(nlp_module.value)
 
 ES_NLP.max_length = 1_500_000
@@ -66,13 +67,32 @@ def get_pos_distribution(text):
     return pos_dict
 
 
-def sort_vocabs_by_occurence(vocab_dict, corpus):
-    def occurence(kv):
+def sort_vocabs_by_index(vocab_dict, corpus):
+    def dict_occurence(kv):
         _, ts = kv
         l = [corpus.find(t.text) for t in ts]
         return min([x for x in l if x != -1] + [99_999_999])
 
-    vocab_dict = {k: v for k, v in sorted(vocab_dict.items(), key=occurence)}
+    def list_occurence(t):
+        ind = corpus.find(t.text)
+        return 99_999_999 if ind == -1 else ind
+
+    vocab_dict = {
+        k: sorted(v, key=list_occurence)
+        for k, v in sorted(vocab_dict.items(), key=dict_occurence)
+    }
+    return vocab_dict
+
+
+def sort_vocabs_by_common(vocab_dict, corpus):
+    def list_occurence(t):
+        ind = corpus.find(t.text)
+        return 99_999_999 if ind == -1 else ind
+
+    vocab_dict = {
+        k: sorted(v, key=list_occurence)
+        for k, v in sorted(vocab_dict.items(), key=lambda item: -len(item[1]))
+    }
     return vocab_dict
 
 

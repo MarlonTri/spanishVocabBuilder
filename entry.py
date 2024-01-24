@@ -31,7 +31,7 @@ vs = VocabStatus(csv_path=DEFAULT_CSV_PATH)
 vocab_dict = get_vocab(all_text, min_occurences=2, vocab_status=vs)
 #vocab_dict = get_vocab(vpub.get_docs_text()[4], min_occurences=1, vocab_status=vs)
 
-vocab_dict = sort_vocabs_by_occurence(vocab_dict, all_text)
+vocab_dict = sort_vocabs_by_common(vocab_dict, all_text)
 
 # print("Non words:", len([k for k in vocab_dict if k not in SPANISH_DICTIONARY]))
 
@@ -47,6 +47,7 @@ vocab_dict = {
     for k, v in vocab_dict.items()
     if (not vs.is_discarded(k) and not vs.is_known(k) and vs.is_seen(k))
 }
+vocab_dict = sort_vocabs_by_common(vocab_dict, all_text)
 
 user_process_vocab(vocab_infos, vocab_dict, corpus=all_text)
 
